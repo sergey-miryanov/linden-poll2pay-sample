@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+  <meta title="LindenPoll2paySample" package="ru.zzzzzzerg.linden.samples.poll2pay" version="1.0.0" company="RockGate" />
+  <app main="Main" path="Export" file="LindenPoll2PaySample" />
+
+  <window fullscreen="true" />
+
+  <source path="Source" />
+
+  <haxelib name="openfl" />
+  <haxelib name="linden-poll2pay"/>
+
+  <assets path="Assets" rename="assets" exclude="openfl.svg" />
+  <icon path="Assets/openfl.svg" />
+
+  <android target-sdk-version="19" minimum-sdk-version="14" if="android" />
+
+</project>
