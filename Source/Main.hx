@@ -23,9 +23,9 @@ class Main extends Sprite
 
     super ();
 
-    var token : String = "";
-    var email : String = "";
-    var userId : Int = 0;
+    var token : String = "1a4665c3862abf2b6db2dcdc4ab32fc9";
+    var email : String = "zerger@gmail.com";
+    var userId : Int = 1;
 
     Poll2Pay.start(token, email, userId);
 
