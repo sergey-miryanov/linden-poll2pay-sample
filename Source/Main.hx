@@ -50,7 +50,6 @@ class Main extends Sprite
 
   function showPoll(e : MouseEvent)
   {
-    trace("XXXXXXXXXXXXXXXXXX");
     Poll2Pay.showPoll();
   }
 
