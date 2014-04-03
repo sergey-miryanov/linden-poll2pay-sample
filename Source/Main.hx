@@ -50,7 +50,14 @@ class Main extends Sprite
 
   function showPoll(e : MouseEvent)
   {
-    Poll2Pay.showPoll();
+    if(Poll2Pay.isEnabled())
+    {
+      Poll2Pay.showPoll();
+    }
+    else
+    {
+      _showPoll.label.text = "DISABLED";
+    }
   }
 
 
