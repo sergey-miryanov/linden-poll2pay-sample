@@ -27,12 +27,12 @@ class Main extends Sprite
     var email : String = "zerger@gmail.com";
     var userId : Int = 1;
 
-    Poll2Pay.start(token, email, userId);
-
     _showPoll = new ColorBtn(0xff00ff00, "Show Poll");
     _showPoll.addEventListener(MouseEvent.CLICK, showPoll);
     _showPoll.x = 50;
     _showPoll.y = 50;
+
+    Poll2Pay.start(token, email, userId, new Poll2PayHandler(_showPoll));
 
     addChild(_showPoll);
 
@@ -50,17 +50,42 @@ class Main extends Sprite
 
   function showPoll(e : MouseEvent)
   {
-    if(Poll2Pay.isEnabled())
+    Poll2Pay.showPoll();
+  }
+}
+
+class Poll2PayHandler extends Poll2PayHandlerBase
+{
+  public function new(btn : ColorBtn)
+  {
+    _btn = btn;
+  }
+
+  override public function started(enabled : Bool, failure : Bool)
+  {
+    if(enabled)
     {
-      Poll2Pay.showPoll();
+      _btn.label.text = "SHOW POLL";
     }
     else
     {
-      _showPoll.label.text = "DISABLED";
+      _btn.label.text = "DISABLED";
     }
   }
 
+  override public function pollCompleted(finished : Bool)
+  {
+    if(finished)
+    {
+      _btn.fill(0x00ff00);
+    }
+    else
+    {
+      _btn.fill(0xff0000);
+    }
+  }
 
+  private var _btn : ColorBtn;
 }
 
 class ColorBtn extends Sprite
@@ -88,7 +113,7 @@ class ColorBtn extends Sprite
     setEnabled(enabled);
   }
 
-  private function fill(clr : Int)
+  public function fill(clr : Int)
   {
     graphics.beginFill(clr);
     graphics.drawRect(0, 0, width, HEIGHT);
